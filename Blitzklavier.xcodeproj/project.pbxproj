@@ -1,0 +1,509 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EBB953E11D74FE5200EC0743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBB953E01D74FE5200EC0743 /* Assets.xcassets */; };
+		EBB953E41D74FE5200EC0743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBB953E21D74FE5200EC0743 /* LaunchScreen.storyboard */; };
+		EBB953EF1D74FE5300EC0743 /* BlitzklavierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB953EE1D74FE5300EC0743 /* BlitzklavierTests.swift */; };
+		EBB953FA1D74FE5300EC0743 /* BlitzklavierUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB953F91D74FE5300EC0743 /* BlitzklavierUITests.swift */; };
+		EBB954081D74FE6200EC0743 /* PianoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB954071D74FE6200EC0743 /* PianoView.swift */; };
+		EBB9540A1D74FE8300EC0743 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBB954091D74FE8300EC0743 /* Info.plist */; };
+		EBB9540C1D74FE8E00EC0743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB9540B1D74FE8E00EC0743 /* AppDelegate.swift */; };
+		EBB9540E1D74FE9500EC0743 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB9540D1D74FE9500EC0743 /* ViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EBB953EB1D74FE5300EC0743 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBB953CE1D74FE5200EC0743 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBB953D51D74FE5200EC0743;
+			remoteInfo = Blitzklavier;
+		};
+		EBB953F61D74FE5300EC0743 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBB953CE1D74FE5200EC0743 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBB953D51D74FE5200EC0743;
+			remoteInfo = Blitzklavier;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EBB953D61D74FE5200EC0743 /* Blitzklavier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blitzklavier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB953E01D74FE5200EC0743 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EBB953E31D74FE5200EC0743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EBB953EA1D74FE5300EC0743 /* BlitzklavierTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlitzklavierTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB953EE1D74FE5300EC0743 /* BlitzklavierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzklavierTests.swift; sourceTree = "<group>"; };
+		EBB953F01D74FE5300EC0743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB953F51D74FE5300EC0743 /* BlitzklavierUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlitzklavierUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB953F91D74FE5300EC0743 /* BlitzklavierUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzklavierUITests.swift; sourceTree = "<group>"; };
+		EBB953FB1D74FE5300EC0743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB954071D74FE6200EC0743 /* PianoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PianoView.swift; sourceTree = "<group>"; };
+		EBB954091D74FE8300EC0743 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB9540B1D74FE8E00EC0743 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EBB9540D1D74FE9500EC0743 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EBB953D31D74FE5200EC0743 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB953E71D74FE5300EC0743 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB953F21D74FE5300EC0743 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EBB953CD1D74FE5200EC0743 = {
+			isa = PBXGroup;
+			children = (
+				EBB953D81D74FE5200EC0743 /* Blitzklavier */,
+				EBB953ED1D74FE5300EC0743 /* BlitzklavierTests */,
+				EBB953F81D74FE5300EC0743 /* BlitzklavierUITests */,
+				EBB953D71D74FE5200EC0743 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EBB953D71D74FE5200EC0743 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EBB953D61D74FE5200EC0743 /* Blitzklavier.app */,
+				EBB953EA1D74FE5300EC0743 /* BlitzklavierTests.xctest */,
+				EBB953F51D74FE5300EC0743 /* BlitzklavierUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EBB953D81D74FE5200EC0743 /* Blitzklavier */ = {
+			isa = PBXGroup;
+			children = (
+				EBB9540B1D74FE8E00EC0743 /* AppDelegate.swift */,
+				EBB9540D1D74FE9500EC0743 /* ViewController.swift */,
+				EBB954071D74FE6200EC0743 /* PianoView.swift */,
+				EBB953E01D74FE5200EC0743 /* Assets.xcassets */,
+				EBB953E21D74FE5200EC0743 /* LaunchScreen.storyboard */,
+				EBB954091D74FE8300EC0743 /* Info.plist */,
+			);
+			path = Blitzklavier;
+			sourceTree = "<group>";
+		};
+		EBB953ED1D74FE5300EC0743 /* BlitzklavierTests */ = {
+			isa = PBXGroup;
+			children = (
+				EBB953EE1D74FE5300EC0743 /* BlitzklavierTests.swift */,
+				EBB953F01D74FE5300EC0743 /* Info.plist */,
+			);
+			path = BlitzklavierTests;
+			sourceTree = "<group>";
+		};
+		EBB953F81D74FE5300EC0743 /* BlitzklavierUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EBB953F91D74FE5300EC0743 /* BlitzklavierUITests.swift */,
+				EBB953FB1D74FE5300EC0743 /* Info.plist */,
+			);
+			path = BlitzklavierUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EBB953D51D74FE5200EC0743 /* Blitzklavier */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBB953FE1D74FE5300EC0743 /* Build configuration list for PBXNativeTarget "Blitzklavier" */;
+			buildPhases = (
+				EBB953D21D74FE5200EC0743 /* Sources */,
+				EBB953D31D74FE5200EC0743 /* Frameworks */,
+				EBB953D41D74FE5200EC0743 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Blitzklavier;
+			productName = Blitzklavier;
+			productReference = EBB953D61D74FE5200EC0743 /* Blitzklavier.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EBB953E91D74FE5300EC0743 /* BlitzklavierTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBB954011D74FE5300EC0743 /* Build configuration list for PBXNativeTarget "BlitzklavierTests" */;
+			buildPhases = (
+				EBB953E61D74FE5300EC0743 /* Sources */,
+				EBB953E71D74FE5300EC0743 /* Frameworks */,
+				EBB953E81D74FE5300EC0743 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EBB953EC1D74FE5300EC0743 /* PBXTargetDependency */,
+			);
+			name = BlitzklavierTests;
+			productName = BlitzklavierTests;
+			productReference = EBB953EA1D74FE5300EC0743 /* BlitzklavierTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EBB953F41D74FE5300EC0743 /* BlitzklavierUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBB954041D74FE5300EC0743 /* Build configuration list for PBXNativeTarget "BlitzklavierUITests" */;
+			buildPhases = (
+				EBB953F11D74FE5300EC0743 /* Sources */,
+				EBB953F21D74FE5300EC0743 /* Frameworks */,
+				EBB953F31D74FE5300EC0743 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EBB953F71D74FE5300EC0743 /* PBXTargetDependency */,
+			);
+			name = BlitzklavierUITests;
+			productName = BlitzklavierUITests;
+			productReference = EBB953F51D74FE5300EC0743 /* BlitzklavierUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EBB953CE1D74FE5200EC0743 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "JožeWs";
+				TargetAttributes = {
+					EBB953D51D74FE5200EC0743 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = CZV9AX6MLD;
+					};
+					EBB953E91D74FE5300EC0743 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = CZV9AX6MLD;
+						TestTargetID = EBB953D51D74FE5200EC0743;
+					};
+					EBB953F41D74FE5300EC0743 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = CZV9AX6MLD;
+						TestTargetID = EBB953D51D74FE5200EC0743;
+					};
+				};
+			};
+			buildConfigurationList = EBB953D11D74FE5200EC0743 /* Build configuration list for PBXProject "Blitzklavier" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EBB953CD1D74FE5200EC0743;
+			productRefGroup = EBB953D71D74FE5200EC0743 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EBB953D51D74FE5200EC0743 /* Blitzklavier */,
+				EBB953E91D74FE5300EC0743 /* BlitzklavierTests */,
+				EBB953F41D74FE5300EC0743 /* BlitzklavierUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EBB953D41D74FE5200EC0743 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB953E41D74FE5200EC0743 /* LaunchScreen.storyboard in Resources */,
+				EBB953E11D74FE5200EC0743 /* Assets.xcassets in Resources */,
+				EBB9540A1D74FE8300EC0743 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB953E81D74FE5300EC0743 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB953F31D74FE5300EC0743 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EBB953D21D74FE5200EC0743 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB9540E1D74FE9500EC0743 /* ViewController.swift in Sources */,
+				EBB9540C1D74FE8E00EC0743 /* AppDelegate.swift in Sources */,
+				EBB954081D74FE6200EC0743 /* PianoView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB953E61D74FE5300EC0743 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB953EF1D74FE5300EC0743 /* BlitzklavierTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB953F11D74FE5300EC0743 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB953FA1D74FE5300EC0743 /* BlitzklavierUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EBB953EC1D74FE5300EC0743 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBB953D51D74FE5200EC0743 /* Blitzklavier */;
+			targetProxy = EBB953EB1D74FE5300EC0743 /* PBXContainerItemProxy */;
+		};
+		EBB953F71D74FE5300EC0743 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBB953D51D74FE5200EC0743 /* Blitzklavier */;
+			targetProxy = EBB953F61D74FE5300EC0743 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EBB953E21D74FE5200EC0743 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EBB953E31D74FE5200EC0743 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EBB953FC1D74FE5300EC0743 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EBB953FD1D74FE5300EC0743 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EBB953FF1D74FE5300EC0743 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Blitzklavier/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Joz-eWs.Blitzklavier";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		EBB954001D74FE5300EC0743 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Blitzklavier/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Joz-eWs.Blitzklavier";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		EBB954021D74FE5300EC0743 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BlitzklavierTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Joz-eWs.BlitzklavierTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Blitzklavier.app/Blitzklavier";
+			};
+			name = Debug;
+		};
+		EBB954031D74FE5300EC0743 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BlitzklavierTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Joz-eWs.BlitzklavierTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Blitzklavier.app/Blitzklavier";
+			};
+			name = Release;
+		};
+		EBB954051D74FE5300EC0743 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BlitzklavierUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Joz-eWs.BlitzklavierUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Blitzklavier;
+			};
+			name = Debug;
+		};
+		EBB954061D74FE5300EC0743 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BlitzklavierUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Joz-eWs.BlitzklavierUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Blitzklavier;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EBB953D11D74FE5200EC0743 /* Build configuration list for PBXProject "Blitzklavier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBB953FC1D74FE5300EC0743 /* Debug */,
+				EBB953FD1D74FE5300EC0743 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBB953FE1D74FE5300EC0743 /* Build configuration list for PBXNativeTarget "Blitzklavier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBB953FF1D74FE5300EC0743 /* Debug */,
+				EBB954001D74FE5300EC0743 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBB954011D74FE5300EC0743 /* Build configuration list for PBXNativeTarget "BlitzklavierTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBB954021D74FE5300EC0743 /* Debug */,
+				EBB954031D74FE5300EC0743 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBB954041D74FE5300EC0743 /* Build configuration list for PBXNativeTarget "BlitzklavierUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBB954051D74FE5300EC0743 /* Debug */,
+				EBB954061D74FE5300EC0743 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EBB953CE1D74FE5200EC0743 /* Project object */;
+}
