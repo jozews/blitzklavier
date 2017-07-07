@@ -15,6 +15,7 @@
 		EBB9540A1D74FE8300EC0743 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBB954091D74FE8300EC0743 /* Info.plist */; };
 		EBB9540C1D74FE8E00EC0743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB9540B1D74FE8E00EC0743 /* AppDelegate.swift */; };
 		EBB9540E1D74FE9500EC0743 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB9540D1D74FE9500EC0743 /* ViewController.swift */; };
+		EBCF45F81F103F67009A1707 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF45F71F103F67009A1707 /* Key.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		EBB954091D74FE8300EC0743 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBB9540B1D74FE8E00EC0743 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBB9540D1D74FE9500EC0743 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EBCF45F71F103F67009A1707 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				EBB9540B1D74FE8E00EC0743 /* AppDelegate.swift */,
 				EBB9540D1D74FE9500EC0743 /* ViewController.swift */,
 				EBB954071D74FE6200EC0743 /* PianoView.swift */,
+				EBCF45F71F103F67009A1707 /* Key.swift */,
 				EBB953E01D74FE5200EC0743 /* Assets.xcassets */,
 				EBB953E21D74FE5200EC0743 /* LaunchScreen.storyboard */,
 				EBB954091D74FE8300EC0743 /* Info.plist */,
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB9540E1D74FE9500EC0743 /* ViewController.swift in Sources */,
+				EBCF45F81F103F67009A1707 /* Key.swift in Sources */,
 				EBB9540C1D74FE8E00EC0743 /* AppDelegate.swift in Sources */,
 				EBB954081D74FE6200EC0743 /* PianoView.swift in Sources */,
 			);
@@ -351,6 +355,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -389,6 +394,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -426,6 +432,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joz-eWs.BlitzklavierTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Blitzklavier.app/Blitzklavier";
 			};
 			name = Debug;
@@ -438,6 +445,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joz-eWs.BlitzklavierTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Blitzklavier.app/Blitzklavier";
 			};
 			name = Release;
@@ -449,6 +457,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joz-eWs.BlitzklavierUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Blitzklavier;
 			};
 			name = Debug;
@@ -460,6 +469,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joz-eWs.BlitzklavierUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Blitzklavier;
 			};
 			name = Release;

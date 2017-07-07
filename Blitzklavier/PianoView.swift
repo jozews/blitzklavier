@@ -8,22 +8,26 @@
 
 import UIKit
 
-let firstKey = 5*1 // C1
-let lastKey = 7*8 + 1 // C8
-
-let maxKeysCount = lastKey - firstKey
-let minKeysCount = 15
-let defaultOriginKey = 7*3
-
-let fontName = "HelveticaNeue-Thin"
+let firstWhiteKey = 7*3 // C3
+let lastWhiteKey = 7*8 + 1 // C8
 
 class PianoView: UIView {
     
-    var keysCount = 15 // visible white keys
-    var originKey = 7*3 // C3
+    // MARK:- LETS
+    
+    let maxWhiteKeysCount = lastWhiteKey - firstWhiteKey
+    let minWhiteKeysCount = 10
+    let defaultWhiteOriginKey = 7*3
+    
+    let fontName = "HelveticaNeue-Thin"
+    
+    // MARK:- VARS
+    
+    var whiteKeysCount = 15 // visible white keys
+    var whiteOriginKey = 7*3 // C3
     
     var whiteKeyWidth: CGFloat {
-        return frame.width/CGFloat(keysCount)
+        return frame.width/CGFloat(whiteKeysCount)
     }
     
     var whiteKeyHeight: CGFloat {
@@ -46,64 +50,18 @@ class PianoView: UIView {
         
         backgroundColor = UIColor.white
         
-        let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.panHandler(panGesture:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapHander(tapGesture:)))
+        addGestureRecognizer(tapGesture)
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panHandler(panGesture:)))
         addGestureRecognizer(panGesture)
         
-        let pinchGesture = UIPinchGestureRecognizer.init(target: self, action: #selector(self.pinchHandler(pinchGesture:)))
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchHandler(pinchGesture:)))
         addGestureRecognizer(pinchGesture)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK:- GESTURE HANDLERS
-    
-    func tapHander(tapGesture: UITapGestureRecognizer) {
-        
-    }
-    
-    @objc func panHandler(panGesture: UIPanGestureRecognizer) {
-        
-        let xTrans = panGesture.translation(in: self).x
-        
-        // return if lower or upper limit has been reached
-        
-        if (xTrans > 0 && originKey == firstKey) || (xTrans < 0 && originKey + keysCount == lastKey) {
-            return
-        }
-
-        // not enough translation
-        if abs(xTrans) < whiteKeyWidth*2 {
-            return
-        }
-        
-        originKey += xTrans < 0 ? 1 : -1 // updates origin
-        panGesture.setTranslation(CGPoint.zero, in: self)
-        setNeedsDisplay() // redraws
-    }
-
-    @objc func pinchHandler(pinchGesture: UIPinchGestureRecognizer) {
-    
-        let scale = pinchGesture.scale
-        let normalizedScale = 1.0 + (scale - 1.0)/2 // reduces effect of pinch
-        
-        let newKeysCount = Int(CGFloat(keysCount)*normalizedScale)
-        let newOriginKey = originKey + (keysCount - newKeysCount)/3
-        
-        if newKeysCount >= lastKey - firstKey {
-            originKey = firstKey
-            keysCount = maxKeysCount
-        }
-        else if newKeysCount <= minKeysCount {
-            originKey = originKey + (keysCount - minKeysCount)/2
-            keysCount = minKeysCount
-        }
-        else {
-            originKey = newOriginKey // updates origin before keysCount
-            keysCount = newKeysCount // scales
-        }
-        setNeedsDisplay() // redraws
     }
     
     // MARK:- VIEW
@@ -117,14 +75,14 @@ class PianoView: UIView {
         ctx.setFillColor(UIColor.black.cgColor)
         
         var x: CGFloat = 0
-        var key = originKey
+        var key = whiteOriginKey
         
         while x < frame.width {
             
-            let mod = key % 7
+            let whiteKeyIdx = key % 7
 
             // draw leftmost black key if applies
-            if x == 0 && (mod == 1 || mod == 2 || mod == 4 || mod == 5 || mod == 6) {
+            if x == 0 && (whiteKeyIdx == 1 || whiteKeyIdx == 2 || whiteKeyIdx == 4 || whiteKeyIdx == 5 || whiteKeyIdx == 6) {
                 let blackKeyRect = CGRect.init(x: x - blackKeyWidth/2, y: frame.height - whiteKeyHeight, width: blackKeyWidth, height: blackKeyHeight)
                 ctx.fill(blackKeyRect)
             }
@@ -133,7 +91,7 @@ class PianoView: UIView {
             let whiteKeyRect =  CGRect.init(x: x, y: frame.height - whiteKeyHeight, width: whiteKeyWidth, height: whiteKeyHeight)
             ctx.stroke(whiteKeyRect)
             
-            // draw c4
+            // draw c's
             if key % 7 == 0 {
                 
                 let label = NSString.init(string: "C\(Int(key/7))")
@@ -146,7 +104,7 @@ class PianoView: UIView {
             }
             
             // draw black key if next note isn't E or B
-            if mod != 2 && mod != 6 {
+            if whiteKeyIdx != 2 && whiteKeyIdx != 6 {
                 let blackKeyRect = CGRect.init(x: x + whiteKeyWidth*3/4, y: frame.height - whiteKeyHeight, width: blackKeyWidth, height: blackKeyHeight)
                 ctx.fill(blackKeyRect)
             }
@@ -156,5 +114,91 @@ class PianoView: UIView {
             x += whiteKeyWidth
         }
     }
+    
+    
+    // MARK:- GESTURE HANDLERS
+    
+    @objc func tapHander(tapGesture: UITapGestureRecognizer) {
+        guard let keyTapped = keyAtPosition(tapGesture.location(in: self)) else { return }
+        print(keyTapped)
+    }
+    
+    @objc func panHandler(panGesture: UIPanGestureRecognizer) {
+        
+        let xTrans = panGesture.translation(in: self).x
+        
+        // return if lower or upper limit has been reached
+        
+        if (xTrans > 0 && whiteOriginKey == firstWhiteKey) || (xTrans < 0 && whiteOriginKey + whiteKeysCount == lastWhiteKey) {
+            return
+        }
+        
+        // not enough translation
+        if abs(xTrans) < whiteKeyWidth {
+            return
+        }
+        
+        whiteOriginKey += xTrans < 0 ? 1 : -1 // updates origin
+        panGesture.setTranslation(CGPoint.zero, in: self)
+        setNeedsDisplay() // redraws
+    }
+    
+    @objc func pinchHandler(pinchGesture: UIPinchGestureRecognizer) {
+        
+        let scale = pinchGesture.scale
+        let normalizedScale = 1.0 + (scale - 1.0)/4 // reduces effect of pinch
+        
+        let newKeysCount = Int(CGFloat(whiteKeysCount)*normalizedScale)
+        let newOriginKey = whiteOriginKey + (whiteKeysCount - newKeysCount)/3
+        
+        if newKeysCount >= lastWhiteKey - firstWhiteKey {
+            whiteOriginKey = firstWhiteKey
+            whiteKeysCount = maxWhiteKeysCount
+        }
+        else if newKeysCount <= minWhiteKeysCount {
+            whiteOriginKey = whiteOriginKey + (whiteKeysCount - minWhiteKeysCount)/2
+            whiteKeysCount = minWhiteKeysCount
+        }
+        else {
+            whiteOriginKey = newOriginKey // updates origin before keysCount
+            whiteKeysCount = newKeysCount // scales
+        }
+        setNeedsDisplay() // redraws
+    }
+    
+    // MARK:- UTILITIES
+    
+    func keyAtPosition(_ position: CGPoint) -> Key? {
+        
+        let touchedPiano = position.y > (frame.height - whiteKeyHeight)
+        
+        guard touchedPiano else { return nil }
+        
+        // upper part of the piano is intended for black keys
+        let touchedBottom = position.y > (frame.height - whiteKeyHeight + blackKeyHeight)
+        let whiteKeyPosition = Int(position.x/whiteKeyWidth)
+        
+        if touchedBottom {
+            return Key(whiteKey: whiteOriginKey + whiteKeyPosition, sharp: false)
+        }
+        
+        // check if black key was aimed
+        
+        let blackKeyPosition = Int(round(position.x/whiteKeyWidth))
+        let whiteKeyIdx = (whiteOriginKey + blackKeyPosition - 1) % 7
+        
+        // no black key in this position
+        if whiteKeyIdx == 2 || whiteKeyIdx == 6 {
+            return Key(whiteKey: whiteOriginKey + whiteKeyPosition, sharp: false)
+        }
+        
+        return Key(whiteKey: whiteOriginKey + blackKeyPosition - 1, sharp: true)
+    }
 }
+
+
+
+
+
+
 
