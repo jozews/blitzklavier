@@ -115,7 +115,7 @@ class PianoView: UIView {
             
             // draw black key if next note isn't E or B
             if whiteKeyIdx != 2 && whiteKeyIdx != 6 {
-                let blackKeyRect = CGRect(x: x + whiteKeyWidth*3/4 - lineWidth*2, y: frame.height - whiteKeyHeight, width: blackKeyWidth, height: blackKeyHeight)
+                let blackKeyRect = CGRect(x: x + whiteKeyWidth - blackKeyWidth/2, y: frame.height - whiteKeyHeight, width: blackKeyWidth, height: blackKeyHeight)
                 ctx.fill(blackKeyRect)
             }
             
@@ -137,15 +137,15 @@ class PianoView: UIView {
             let lowerFrame = CGRect(x: frame.origin.x, y: frame.origin.y + blackKeyHeight, width: frame.width, height: frame.height - blackKeyHeight)
             ctx.fill(lowerFrame)
             if key.hasBlackKeyOnRight && key.hasBlackKeyOnLeft {
-                let upperFrame = CGRect(x: frame.origin.x + whiteKeyWidth*1/4 + lineWidth*2, y: frame.origin.y, width: frame.width - whiteKeyWidth/2 - lineWidth*3, height: whiteKeyHeight)
+                let upperFrame = CGRect(x: frame.origin.x + blackKeyWidth/2 - lineWidth, y: frame.origin.y, width: frame.width - blackKeyWidth + lineWidth*2, height: whiteKeyHeight)
                 ctx.fill(upperFrame)
             }
             else if key.hasBlackKeyOnRight {
-                let upperFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - whiteKeyWidth*1/4 - lineWidth*1, height: blackKeyHeight)
+                let upperFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - blackKeyWidth/2 + lineWidth, height: blackKeyHeight)
                 ctx.fill(upperFrame)
             }
             else if key.hasBlackKeyOnLeft {
-                let upperFrame = CGRect(x: frame.origin.x + whiteKeyWidth*1/4 + lineWidth*2, y: frame.origin.y, width: frame.width - whiteKeyWidth*1/4 - lineWidth*2, height: blackKeyHeight)
+                let upperFrame = CGRect(x: frame.origin.x + blackKeyWidth/2 - lineWidth, y: frame.origin.y, width: frame.width - blackKeyWidth/2 + lineWidth*2, height: blackKeyHeight)
                 ctx.fill(upperFrame)
             }
         }
@@ -235,7 +235,7 @@ class PianoView: UIView {
         let originKey = Key(whiteKey: whiteOriginKey)
         let distance = CGFloat(Key.whiteDistance(key0: originKey, key1: key))
         
-        let x = distance*whiteKeyWidth + (key.isBlack ? whiteKeyWidth*3/4 - lineWidth*2 : lineWidth)
+        let x = distance*whiteKeyWidth + (key.isBlack ? (whiteKeyWidth - blackKeyWidth/2) : lineWidth)
         let y = frame.height - whiteKeyHeight
         
         let width = key.isBlack ? blackKeyWidth : (whiteKeyWidth - lineWidth*2)
