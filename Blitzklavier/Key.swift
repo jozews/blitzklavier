@@ -162,6 +162,16 @@ class Key: CustomStringConvertible, Comparable {
             return 6
         }
     }
+    
+    var hasBlackKeyOnRight: Bool {
+        guard !isBlack else { return false }
+        return whiteIndex == 0 || whiteIndex == 1 || whiteIndex == 3 || whiteIndex == 4 || whiteIndex == 5
+    }
+    
+    var hasBlackKeyOnLeft: Bool {
+        guard !isBlack else { return false }
+        return whiteIndex == 1 || whiteIndex == 2 || whiteIndex == 4 || whiteIndex == 5 || whiteIndex == 6
+    }
 }
 
 

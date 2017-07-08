@@ -58,7 +58,7 @@ class PianoView: UIView {
         
         super.init(frame: frame)
         
-        backgroundColor = UIColor.white
+        backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
         isMultipleTouchEnabled = true
         
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(panHandler(panGesture:)))
@@ -78,9 +78,12 @@ class PianoView: UIView {
         
         guard let ctx = UIGraphicsGetCurrentContext() else { return }
         
-        ctx.setLineWidth(lineWidth) // TODO: set proportional to zoom value
+         // TODO: set proportional to zoom value
+        
+        ctx.setLineWidth(lineWidth)
         ctx.setStrokeColor(UIColor.black.cgColor)
         ctx.setFillColor(UIColor.black.cgColor)
+        ctx.setBlendMode(.normal)
         
         var x: CGFloat = 0
         var key = whiteOriginKey
@@ -88,7 +91,7 @@ class PianoView: UIView {
         while x < frame.width {
             
             let whiteKeyIdx = key % 7
-
+            
             // draw leftmost black key if applies
             if x == 0 && (whiteKeyIdx == 1 || whiteKeyIdx == 2 || whiteKeyIdx == 4 || whiteKeyIdx == 5 || whiteKeyIdx == 6) {
                 let blackKeyRect = CGRect(x: x - blackKeyWidth/2, y: frame.height - whiteKeyHeight, width: blackKeyWidth, height: blackKeyHeight)
@@ -123,8 +126,28 @@ class PianoView: UIView {
         
         for touchedKey in touchedKeys {
             ctx.setFillColor(UIColor.lightGray.cgColor)
-            let frame = frameOfKey(touchedKey.value)
-            ctx.fill(frame)
+            let key = touchedKey.value
+            let frame = frameOfKey(key)
+            // fill entire black frame
+            guard !touchedKey.value.isBlack else {
+                ctx.fill(frame)
+                continue
+            }
+            // fill frame by removing black overlapping
+            let lowerFrame = CGRect(x: frame.origin.x, y: frame.origin.y + blackKeyHeight, width: frame.width, height: frame.height - blackKeyHeight)
+            ctx.fill(lowerFrame)
+            if key.hasBlackKeyOnRight && key.hasBlackKeyOnLeft {
+                let upperFrame = CGRect(x: frame.origin.x + whiteKeyWidth*1/4, y: frame.origin.y, width: frame.width - whiteKeyWidth/2, height: whiteKeyHeight)
+                ctx.fill(upperFrame)
+            }
+            else if key.hasBlackKeyOnRight {
+                let upperFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - whiteKeyWidth*1/4, height: blackKeyHeight)
+                ctx.fill(upperFrame)
+            }
+            else if key.hasBlackKeyOnLeft {
+                let upperFrame = CGRect(x: frame.origin.x + whiteKeyWidth*1/4, y: frame.origin.y, width: frame.width - whiteKeyWidth*1/4, height: blackKeyHeight)
+                ctx.fill(upperFrame)
+            }
         }
     }
     
@@ -141,14 +164,11 @@ class PianoView: UIView {
         for touch in touches {
             guard let newTouchedKey = keyAtPosition(touch.location(in: self)) else {
                 touchedKeys.removeValue(forKey: touch)
-                print("touch not in keyboard")
                 continue
             }
-            print("new touched key \(newTouchedKey)")
             guard let previousTouchedKey = touchedKeys[touch] else {
                 continue
             }
-            print("previous touched key \(previousTouchedKey)")
             if newTouchedKey != previousTouchedKey {
                 touchedKeys[touch] = newTouchedKey
                 setNeedsDisplay() // redraws
@@ -218,7 +238,7 @@ class PianoView: UIView {
         let x = distance*whiteKeyWidth + (key.isBlack ? whiteKeyWidth*3/4 : lineWidth)
         let y = frame.height - whiteKeyHeight
         
-        let width = key.isBlack ? blackKeyWidth : whiteKeyWidth - lineWidth*2
+        let width = key.isBlack ? blackKeyWidth : (whiteKeyWidth - lineWidth*2)
         let height = key.isBlack ? blackKeyHeight : whiteKeyHeight
         
         return CGRect(x: x, y: y, width: width, height: height)
