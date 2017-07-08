@@ -54,7 +54,7 @@ class PianoView: UIView {
         isMultipleTouchEnabled = true
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panHandler(panGesture:)))
-        addGestureRecognizer(panGesture)
+//        addGestureRecognizer(panGesture)
         
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchHandler(pinchGesture:)))
         addGestureRecognizer(pinchGesture)
@@ -126,27 +126,25 @@ class PianoView: UIView {
             guard let touchedKey = keyAtPosition(touch.location(in: self)) else { continue }
             touchedKeys[touch] = touchedKey
         }
-        drawTouchedKeys()
+        setNeedsDisplay() // redraws
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        var touchedKeyChanged = false
         for touch in touches {
             guard let newTouchedKey = keyAtPosition(touch.location(in: self)) else {
-                touchedKeyChanged = true
                 touchedKeys.removeValue(forKey: touch)
+                print("touch not in keyboard")
                 continue
             }
-            guard let touchedKey = touchedKeys[touch] else {
+            print("new touched key \(newTouchedKey)")
+            guard let previousTouchedKey = touchedKeys[touch] else {
                 continue
             }
-            touchedKeys[touch] = newTouchedKey
-            if newTouchedKey != touchedKey {
-                touchedKeyChanged = true
+            print("previous touched key \(previousTouchedKey)")
+            if newTouchedKey != previousTouchedKey {
+                touchedKeys[touch] = newTouchedKey
+                setNeedsDisplay() // redraws
             }
-        }
-        if touchedKeyChanged {
-            drawTouchedKeys()
         }
     }
     
@@ -154,7 +152,7 @@ class PianoView: UIView {
         for touch in touches {
             touchedKeys.removeValue(forKey: touch)
         }
-        drawTouchedKeys()
+        setNeedsDisplay() // redraws
     }
     
     // MARK:- GESTURE HANDLERS (PINCH & PAN)
@@ -203,11 +201,6 @@ class PianoView: UIView {
     }
     
     // MARK:- UTILITIES
-    
-    func drawTouchedKeys() {
-        setNeedsDisplay() // redraws
-        
-    }
     
     func frameOfKey(_ key: Key) -> CGRect {
         
