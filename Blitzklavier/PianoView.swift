@@ -19,7 +19,8 @@ class PianoView: UIView {
     let minWhiteKeysCount = 10
     let defaultWhiteOriginKey = 7*3
     
-    let fontName = "HelveticaNeue-Thin"
+    let fontName = "HelveticaNeue"
+    let lineWidth: CGFloat = 1.0
     
     // MARK:- VARS
     
@@ -42,7 +43,14 @@ class PianoView: UIView {
         return whiteKeyHeight*2/3
     }
     
+    // MARK:- MODEL
+    
     var touchedKeys = [UITouch : Key]()
+    
+    // MARK:- GESTURES
+    
+    var panGesture: UIPanGestureRecognizer?
+    var pinchGesture: UIPinchGestureRecognizer?
     
     // MARK:- INIT
     
@@ -53,11 +61,11 @@ class PianoView: UIView {
         backgroundColor = UIColor.white
         isMultipleTouchEnabled = true
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panHandler(panGesture:)))
-//        addGestureRecognizer(panGesture)
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(panHandler(panGesture:)))
+        addGestureRecognizer(panGesture!)
         
-        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchHandler(pinchGesture:)))
-        addGestureRecognizer(pinchGesture)
+        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchHandler(pinchGesture:)))
+        addGestureRecognizer(pinchGesture!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -70,7 +78,7 @@ class PianoView: UIView {
         
         guard let ctx = UIGraphicsGetCurrentContext() else { return }
         
-        ctx.setLineWidth(1)
+        ctx.setLineWidth(lineWidth) // TODO: set proportional to zoom value
         ctx.setStrokeColor(UIColor.black.cgColor)
         ctx.setFillColor(UIColor.black.cgColor)
         
@@ -83,29 +91,28 @@ class PianoView: UIView {
 
             // draw leftmost black key if applies
             if x == 0 && (whiteKeyIdx == 1 || whiteKeyIdx == 2 || whiteKeyIdx == 4 || whiteKeyIdx == 5 || whiteKeyIdx == 6) {
-                let blackKeyRect = CGRect.init(x: x - blackKeyWidth/2, y: frame.height - whiteKeyHeight, width: blackKeyWidth, height: blackKeyHeight)
+                let blackKeyRect = CGRect(x: x - blackKeyWidth/2, y: frame.height - whiteKeyHeight, width: blackKeyWidth, height: blackKeyHeight)
                 ctx.fill(blackKeyRect)
             }
             
             // draw white key
-            let whiteKeyRect =  CGRect.init(x: x, y: frame.height - whiteKeyHeight, width: whiteKeyWidth, height: whiteKeyHeight)
+            let whiteKeyRect =  CGRect(x: x, y: frame.height - whiteKeyHeight, width: whiteKeyWidth, height: whiteKeyHeight)
             ctx.stroke(whiteKeyRect)
             
-            // draw c's
+            // draw C print
             if key % 7 == 0 {
-                
-                let label = NSString.init(string: "C\(Int(key/7))")
-                let fontSize: CGFloat = whiteKeyWidth/2
+                let label = NSString(string: "C\(Int(key/7))")
+                let fontSize: CGFloat = whiteKeyWidth/3
                 let bottomMargin: CGFloat = whiteKeyWidth/4
-                let labelRect = CGRect.init(x: x, y: frame.height - fontSize - bottomMargin, width: whiteKeyWidth, height: fontSize)
-                let style = NSMutableParagraphStyle.init()
+                let labelRect = CGRect(x: x, y: frame.height - fontSize - bottomMargin, width: whiteKeyWidth, height: fontSize)
+                let style = NSMutableParagraphStyle()
                 style.alignment = .center
-                label.draw(in: labelRect, withAttributes: [NSAttributedStringKey.font : UIFont.init(name: fontName, size: fontSize)!, NSAttributedStringKey.paragraphStyle : style])
+                label.draw(in: labelRect, withAttributes: [NSAttributedStringKey.font : UIFont(name: fontName, size: fontSize)!, NSAttributedStringKey.paragraphStyle : style])
             }
             
             // draw black key if next note isn't E or B
             if whiteKeyIdx != 2 && whiteKeyIdx != 6 {
-                let blackKeyRect = CGRect.init(x: x + whiteKeyWidth*3/4, y: frame.height - whiteKeyHeight, width: blackKeyWidth, height: blackKeyHeight)
+                let blackKeyRect = CGRect(x: x + whiteKeyWidth*3/4, y: frame.height - whiteKeyHeight, width: blackKeyWidth, height: blackKeyHeight)
                 ctx.fill(blackKeyRect)
             }
             
@@ -122,6 +129,7 @@ class PianoView: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         for touch in touches {
             guard let touchedKey = keyAtPosition(touch.location(in: self)) else { continue }
             touchedKeys[touch] = touchedKey
@@ -207,10 +215,10 @@ class PianoView: UIView {
         let originKey = Key(whiteKey: whiteOriginKey)
         let distance = CGFloat(Key.whiteDistance(key0: originKey, key1: key))
         
-        let x = distance*whiteKeyWidth + (key.isBlack ?  whiteKeyWidth - blackKeyWidth/2 : 0)
+        let x = distance*whiteKeyWidth + (key.isBlack ? whiteKeyWidth*3/4 : lineWidth)
         let y = frame.height - whiteKeyHeight
         
-        let width = key.isBlack ? blackKeyWidth : whiteKeyWidth
+        let width = key.isBlack ? blackKeyWidth : whiteKeyWidth - lineWidth*2
         let height = key.isBlack ? blackKeyHeight : whiteKeyHeight
         
         return CGRect(x: x, y: y, width: width, height: height)
