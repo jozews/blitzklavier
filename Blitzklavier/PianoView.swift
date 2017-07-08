@@ -42,6 +42,8 @@ class PianoView: UIView {
         return whiteKeyHeight*2/3
     }
     
+    var touchedKeys = [UITouch : Key]()
+    
     // MARK:- INIT
     
     override init(frame: CGRect) {
@@ -49,9 +51,7 @@ class PianoView: UIView {
         super.init(frame: frame)
         
         backgroundColor = UIColor.white
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapHander(tapGesture:)))
-        addGestureRecognizer(tapGesture)
+        isMultipleTouchEnabled = true
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panHandler(panGesture:)))
         addGestureRecognizer(panGesture)
@@ -64,13 +64,13 @@ class PianoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK:- VIEW
+    // MARK:- VIEW DRAW
 
     override func draw(_ rect: CGRect) {
         
         guard let ctx = UIGraphicsGetCurrentContext() else { return }
         
-        ctx.setLineWidth(0.25)
+        ctx.setLineWidth(1)
         ctx.setStrokeColor(UIColor.black.cgColor)
         ctx.setFillColor(UIColor.black.cgColor)
         
@@ -113,15 +113,51 @@ class PianoView: UIView {
             key += 1
             x += whiteKeyWidth
         }
+        
+        for touchedKey in touchedKeys {
+            ctx.setFillColor(UIColor.lightGray.cgColor)
+            let frame = frameOfKey(touchedKey.value)
+            ctx.fill(frame)
+        }
     }
     
-    
-    // MARK:- GESTURE HANDLERS
-    
-    @objc func tapHander(tapGesture: UITapGestureRecognizer) {
-        guard let keyTapped = keyAtPosition(tapGesture.location(in: self)) else { return }
-        print(keyTapped)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            guard let touchedKey = keyAtPosition(touch.location(in: self)) else { continue }
+            touchedKeys[touch] = touchedKey
+        }
+        drawTouchedKeys()
     }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        var touchedKeyChanged = false
+        for touch in touches {
+            guard let newTouchedKey = keyAtPosition(touch.location(in: self)) else {
+                touchedKeyChanged = true
+                touchedKeys.removeValue(forKey: touch)
+                continue
+            }
+            guard let touchedKey = touchedKeys[touch] else {
+                continue
+            }
+            touchedKeys[touch] = newTouchedKey
+            if newTouchedKey != touchedKey {
+                touchedKeyChanged = true
+            }
+        }
+        if touchedKeyChanged {
+            drawTouchedKeys()
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            touchedKeys.removeValue(forKey: touch)
+        }
+        drawTouchedKeys()
+    }
+    
+    // MARK:- GESTURE HANDLERS (PINCH & PAN)
     
     @objc func panHandler(panGesture: UIPanGestureRecognizer) {
         
@@ -168,6 +204,29 @@ class PianoView: UIView {
     
     // MARK:- UTILITIES
     
+    func drawTouchedKeys() {
+        setNeedsDisplay() // redraws
+        
+    }
+    
+    func frameOfKey(_ key: Key) -> CGRect {
+        
+        let originKey = Key(whiteKey: whiteOriginKey)
+        let distance = CGFloat(Key.whiteDistance(key0: originKey, key1: key))
+        
+        let x = distance*whiteKeyWidth + (key.isBlack ?  whiteKeyWidth - blackKeyWidth/2 : 0)
+        let y = frame.height - whiteKeyHeight
+        
+        let width = key.isBlack ? blackKeyWidth : whiteKeyWidth
+        let height = key.isBlack ? blackKeyHeight : whiteKeyHeight
+        
+        return CGRect(x: x, y: y, width: width, height: height)
+    }
+    
+    /// Predicts key user aimed to touch
+    ///
+    /// - Parameter position: Position of touch
+    /// - Returns: Key touched or nil
     func keyAtPosition(_ position: CGPoint) -> Key? {
         
         let touchedPiano = position.y > (frame.height - whiteKeyHeight)
@@ -179,23 +238,21 @@ class PianoView: UIView {
         let whiteKeyPosition = Int(position.x/whiteKeyWidth)
         
         if touchedBottom {
-            return Key(whiteKey: whiteOriginKey + whiteKeyPosition, sharp: false)
+            return Key(whiteKey: whiteOriginKey + whiteKeyPosition)
         }
         
         // check if black key was aimed
-        
         let blackKeyPosition = Int(round(position.x/whiteKeyWidth))
         let whiteKeyIdx = (whiteOriginKey + blackKeyPosition - 1) % 7
         
         // no black key in this position
         if whiteKeyIdx == 2 || whiteKeyIdx == 6 {
-            return Key(whiteKey: whiteOriginKey + whiteKeyPosition, sharp: false)
+            return Key(whiteKey: whiteOriginKey + whiteKeyPosition)
         }
         
         return Key(whiteKey: whiteOriginKey + blackKeyPosition - 1, sharp: true)
     }
 }
-
 
 
 
