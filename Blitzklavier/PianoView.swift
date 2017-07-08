@@ -20,7 +20,6 @@ class PianoView: UIView {
     let defaultWhiteOriginKey = 7*3
     
     let fontName = "HelveticaNeue"
-    let lineWidth: CGFloat = 1.0
     
     // MARK:- VARS
     
@@ -41,6 +40,10 @@ class PianoView: UIView {
     
     var blackKeyHeight: CGFloat {
         return whiteKeyHeight*2/3
+    }
+    
+    var lineWidth: CGFloat {
+        return 0.25 + (1.0 - CGFloat(whiteKeysCount)/CGFloat(maxWhiteKeysCount))
     }
     
     // MARK:- MODEL
